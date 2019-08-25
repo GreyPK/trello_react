@@ -13,7 +13,7 @@ const SignIn = ({ users, current, setCurrentUser, setUsers }) => {
 
 	const onSubmit = e => {
 		e.preventDefault()
-		const currentUser = users.filter(user => user.name === text)
+		const currentUser = users.filter(user => user.name === text)[0]
 		if (currentUser) {
 			setCurrentUser(currentUser)
 			setText('')
