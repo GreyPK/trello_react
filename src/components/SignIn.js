@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { addUser, setUsers, setCurrentUser } from '../actions/userActions'
 import useGetFromLocalStorage from '../hooks/useGetFromLocalStorage'
 import useSetToLocalStorage from '../hooks/useSetToLocalStorage'
@@ -21,10 +22,11 @@ const SignIn = ({ users, current, setCurrentUser, setUsers }) => {
 	}
 
 	return (
-		<form onSubmit={onSubmit}>
-			<input type="text" value={text} onChange={e => setText(e.target.value)} />
-			<button>Login user</button>
-		</form>
+		current ? <Redirect to='/' /> :
+			<form onSubmit={onSubmit}>
+				<input type="text" value={text} onChange={e => setText(e.target.value)} />
+				<button>Login user</button>
+			</form>
 	)
 }
 

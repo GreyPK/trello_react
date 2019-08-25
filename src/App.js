@@ -16,14 +16,14 @@ function App({ current, setCurrentUser }) {
 	return (
 		<Router>
 			<div className="App">
-				<div className="nav">
-					<li>
-						<Link to='/'>Home</Link>
+				<nav className="nav">
+					<li className="nav-item">
+						<Link to='/' className="nav-link">Home</Link>
 					</li>
-					<li>
-						<Link to='/login'>Login</Link>
+					<li className="nav-item">
+						<Link to='/login' className="nav-link">Login</Link>
 					</li>
-				</div>
+				</nav>
 				<Switch>
 					<PrivateRoute exact path="/" component={Cards} current={current} />
 					<Route exact path="/login" component={Login} />
