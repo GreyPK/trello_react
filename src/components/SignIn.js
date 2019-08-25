@@ -3,27 +3,19 @@ import { connect } from 'react-redux'
 import { addUser, setUsers, setCurrentUser } from '../actions/userActions'
 import useGetFromLocalStorage from '../hooks/useGetFromLocalStorage'
 import useSetToLocalStorage from '../hooks/useSetToLocalStorage'
-import uuidv4 from 'uuid/v4'
 
-const SignUp = ({ users, current, addUser, setCurrentUser, setUsers }) => {
+const SignIn = ({ users, current, setCurrentUser, setUsers }) => {
 	const [text, setText] = useState('')
 
 	useGetFromLocalStorage('users', setUsers)
-	useGetFromLocalStorage('current', setCurrentUser)
 
-	useSetToLocalStorage('users', users)
 	useSetToLocalStorage('current', current)
 
 	const onSubmit = e => {
 		e.preventDefault()
-		if (text !== '') {
-			const currentId = uuidv4()
-			const newUser = {
-				id: currentId,
-				name: text
-			}
-			addUser(newUser)
-			setCurrentUser(newUser)
+		const currentUser = users.filter(user => user.name === text)
+		if (currentUser) {
+			setCurrentUser(currentUser)
 			setText('')
 		}
 	}
@@ -31,7 +23,7 @@ const SignUp = ({ users, current, addUser, setCurrentUser, setUsers }) => {
 	return (
 		<form onSubmit={onSubmit}>
 			<input type="text" value={text} onChange={e => setText(e.target.value)} />
-			<button>Create user</button>
+			<button>Login user</button>
 		</form>
 	)
 }
@@ -47,4 +39,4 @@ const mapDispatchToProps = {
 	setCurrentUser
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

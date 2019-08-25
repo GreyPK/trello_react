@@ -1,10 +1,7 @@
 import { ADD_USER, DELETE_USER, SET_CURRENT_USER, SET_USERS, CLEAR_CURRENT_USER } from '../actions/types'
 
 const initialState = {
-	users: [{
-		id: '61fb16ea-034e-4472-a810-c78700f70dd4',
-		name: 'ivan'
-	}],
+	users: [{ id: "5fcb7792-c835-4a49-b4d3-4d0281a842c5", name: 'admin' }],
 	current: null
 }
 
