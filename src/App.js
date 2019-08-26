@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import './App.css'
 import Login from './components/pages/Login'
+import Logout from './components/pages/Logout'
 import Cards from './components/pages/Cards'
 import PrivateRoute from './components/routing/PrivateRoute'
 import { connect } from 'react-redux'
-import { setCurrentUser } from './actions/userActions'
+import { setCurrentUser, getUsers } from './actions/userActions'
 import useGetFromLocalStorage from './hooks/useGetFromLocalStorage'
 
-function App({ current, setCurrentUser }) {
+function App({ current, setCurrentUser, getUsers, users }) {
 	useGetFromLocalStorage('current', setCurrentUser)
-	console.log(current);
+
+	useEffect(() => {
+		getUsers()
+	}, [])
 
 	return (
 		<Router>
@@ -23,10 +27,15 @@ function App({ current, setCurrentUser }) {
 					<li className="nav-item">
 						<Link to='/login' className="nav-link">Login</Link>
 					</li>
+					<li className="nav-item">
+						<Link to='/logout' className="nav-link">Logout</Link>
+					</li>
 				</nav>
 				<Switch>
 					<PrivateRoute exact path="/" component={Cards} current={current} />
 					<Route exact path="/login" component={Login} />
+					<Route exact path="/logout"
+						render={(props) => <Logout {...props} setCurrentUser={setCurrentUser} />} />
 				</Switch>
 			</div>
 		</Router>
@@ -34,11 +43,13 @@ function App({ current, setCurrentUser }) {
 }
 
 const mapStateToProps = state => ({
-	current: state.user.current
+	current: state.user.current,
+	users: state.user.users
 })
 
 const mapDispatchToProps = {
-	setCurrentUser
+	setCurrentUser,
+	getUsers
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

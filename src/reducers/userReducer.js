@@ -1,7 +1,7 @@
-import { ADD_USER, DELETE_USER, SET_CURRENT_USER, SET_USERS } from '../actions/types'
+import { ADD_USER, DELETE_USER, SET_CURRENT_USER, SET_USERS, GET_USERS } from '../actions/types'
 
 const initialState = {
-	users: [{ id: "5fcb7792-c835-4a49-b4d3-4d0281a842c5", name: 'admin' }],
+	users: null,
 	current: null
 }
 
@@ -11,6 +11,12 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				users: [...state.users, action.payload]
+			}
+
+		case GET_USERS:
+			return {
+				...state,
+				users: action.payload
 			}
 
 		case SET_USERS:

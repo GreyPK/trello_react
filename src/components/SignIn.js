@@ -2,13 +2,10 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { addUser, setUsers, setCurrentUser } from '../actions/userActions'
-import useGetFromLocalStorage from '../hooks/useGetFromLocalStorage'
 import useSetToLocalStorage from '../hooks/useSetToLocalStorage'
 
 const SignIn = ({ users, current, setCurrentUser, setUsers }) => {
 	const [text, setText] = useState('')
-
-	useGetFromLocalStorage('users', setUsers)
 
 	useSetToLocalStorage('current', current)
 

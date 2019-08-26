@@ -8,10 +8,8 @@ import uuidv4 from 'uuid/v4'
 const SignUp = ({ users, current, addUser, setCurrentUser, setUsers }) => {
 	const [text, setText] = useState('')
 
-	useGetFromLocalStorage('users', setUsers)
 	useGetFromLocalStorage('current', setCurrentUser)
 
-	useSetToLocalStorage('users', users)
 	useSetToLocalStorage('current', current)
 
 	const onSubmit = e => {

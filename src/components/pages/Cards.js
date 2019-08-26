@@ -6,7 +6,7 @@ import useSetToLocalStorage from '../../hooks/useSetToLocalStorage'
 import Card from '../Card'
 import uuidv4 from 'uuid/v4'
 
-const Cards = ({ cards, addCard, setCards, deleteCard, setCurrentCard, currentUser }) => {
+const Cards = ({ cards, addCard, setCards, deleteCard, setCurrentCard, currentUser, users }) => {
 	const [text, setText] = useState('')
 	useGetFromLocalStorage('cards', setCards)
 	useSetToLocalStorage('cards', cards)
@@ -22,8 +22,13 @@ const Cards = ({ cards, addCard, setCards, deleteCard, setCurrentCard, currentUs
 			}
 			addCard(newCard)
 			setText('')
+			console.log(users)
+
 		}
 	}
+
+
+
 
 	return (
 		<div>
@@ -32,7 +37,7 @@ const Cards = ({ cards, addCard, setCards, deleteCard, setCurrentCard, currentUs
 				<button>Add new Card</button>
 			</form>
 
-			{cards.map(card => <Card key={card.id} card={card} authorName={currentUser.name} />)}
+			{cards.map(card => <Card key={card.id} card={card} />)}
 		</div>
 	)
 }
@@ -40,6 +45,7 @@ const Cards = ({ cards, addCard, setCards, deleteCard, setCurrentCard, currentUs
 const mapStateToProps = state => ({
 	cards: state.todo.cards,
 	current: state.todo.current,
+	users: state.user.users,
 	currentUser: state.user.current
 })
 
