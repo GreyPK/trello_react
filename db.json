@@ -34,9 +34,14 @@
       "authorId": "1"
     },
     {
-      "name": "new admin tasks",
+      "name": "new admin card",
+      "authorId": "1",
+      "id": "COXj-9N"
+    },
+    {
+      "name": "max's card",
       "authorId": "JDG3Faz",
-      "id": "xHSwbJB"
+      "id": "Xj9gWdh"
     }
   ],
   "todos": [
@@ -51,6 +56,21 @@
       "title": "buy ram",
       "done": false,
       "cardId": "2"
+    },
+    {
+      "title": "buy cd",
+      "cardId": "Xj9gWdh",
+      "id": 3
+    },
+    {
+      "title": "fix display",
+      "cardId": "Xj9gWdh",
+      "id": 4
+    },
+    {
+      "title": "fix admin panel",
+      "cardId": "3",
+      "id": 5
     }
   ],
   "comments": [

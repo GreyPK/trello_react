@@ -31,6 +31,10 @@ function App({ current, setCurrentUser, getUsers, users }) {
 					<li className="nav-item">
 						<Link to='/logout' className="nav-link">Logout</Link>
 					</li>
+					{current &&
+						<li className="nav-item">
+							Hello, {current.name}!
+						</li>}
 				</nav>
 				<Switch>
 					<PrivateRoute exact path="/" component={Cards} current={current} />

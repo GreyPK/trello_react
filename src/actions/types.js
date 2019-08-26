@@ -6,8 +6,6 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const ADD_CARD = 'ADD_CARDS'
 export const GET_CARDS = 'GET_CARDS'
 export const DELETE_CARD = 'DELETE_CARD'
-export const SET_CARDS = 'SET_CARDS'
-export const SET_CURRENT_CARD = 'SET_CURRENT_CARD'
 
 export const ADD_TODO = 'GET_TODO'
 export const GET_TODOS = 'GET_TODOS'

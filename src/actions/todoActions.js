@@ -1,4 +1,4 @@
-import { ADD_CARD, DELETE_CARD, SET_CARDS, SET_CURRENT_CARD, GET_CARDS } from './types'
+import { ADD_CARD, DELETE_CARD, GET_CARDS, ADD_TODO, GET_TODOS, DELETE_TODO } from './types'
 
 export const addCard = card => async (dispatch) => {
 	const res = await fetch('/cards', {
@@ -21,8 +21,45 @@ export const getCards = () => async (dispatch) => {
 	})
 }
 
-export const setCards = cards => ({ type: SET_CARDS, payload: cards })
+export const deleteCard = id => async (dispatch) => {
+	await fetch(`/cards/${id}`, {
+		method: 'delete'
+	})
 
-export const deleteCard = id => ({ type: DELETE_CARD, payload: id })
+	dispatch({
+		type: DELETE_CARD,
+		payload: id
+	})
+}
 
-export const setCurrentCard = card => ({ type: SET_CURRENT_CARD, payload: card })
+export const addTodo = todo => async (dispatch) => {
+	const res = await fetch('/todos', {
+		method: 'POST',
+		body: JSON.stringify(todo),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	const data = await res.json()
+
+	dispatch({ type: ADD_TODO, payload: data })
+}
+
+export const getTodos = () => async (dispatch) => {
+	const res = await fetch('/todos')
+	const data = await res.json()
+	dispatch({
+		type: GET_TODOS, payload: data
+	})
+}
+
+export const deleteTodo = id => async (dispatch) => {
+	await fetch(`/todos/${id}`, {
+		method: 'delete'
+	})
+
+	dispatch({
+		type: DELETE_TODO,
+		payload: id
+	})
+}
