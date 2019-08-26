@@ -15,6 +15,7 @@ function App({ current, setCurrentUser, getUsers, users }) {
 
 	useEffect(() => {
 		getUsers()
+		// eslint-disable-next-line
 	}, [])
 
 	return (

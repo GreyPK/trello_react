@@ -1,4 +1,4 @@
-import { ADD_USER, DELETE_USER, SET_CURRENT_USER, SET_USERS, GET_USERS } from '../actions/types'
+import { ADD_USER, DELETE_USER, SET_CURRENT_USER, GET_USERS } from '../actions/types'
 
 const initialState = {
 	users: null,
@@ -14,12 +14,6 @@ export default (state = initialState, action) => {
 			}
 
 		case GET_USERS:
-			return {
-				...state,
-				users: action.payload
-			}
-
-		case SET_USERS:
 			return {
 				...state,
 				users: action.payload

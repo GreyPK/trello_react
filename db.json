@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "admin"
+    },
+    {
+      "id": "2",
+      "name": "user"
+    },
+    {
+      "id": "3",
+      "name": "greypk"
+    },
+    {
+      "name": "max",
+      "id": "JDG3Faz"
+    }
+  ],
+  "cards": [
+    {
+      "id": "1",
+      "name": "home tasks",
+      "authorId": "3"
+    },
+    {
+      "id": "2",
+      "name": "working tasks",
+      "authorId": "3"
+    },
+    {
+      "id": "3",
+      "name": "admin tasks",
+      "authorId": "1"
+    },
+    {
+      "name": "new admin tasks",
+      "authorId": "JDG3Faz",
+      "id": "xHSwbJB"
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "title": "buy bread",
+      "done": false,
+      "cardId": "1"
+    },
+    {
+      "id": 2,
+      "title": "buy ram",
+      "done": false,
+      "cardId": "2"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "title": "Urgent! Please do it asap",
+      "done": false,
+      "todoId": "1",
+      "userId": "1"
+    }
+  ]
+}

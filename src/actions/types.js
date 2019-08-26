@@ -1,10 +1,10 @@
 export const ADD_USER = 'ADD_USER'
 export const GET_USERS = 'GET_USERS'
-export const SET_USERS = 'SET_USERS'
 export const DELETE_USER = 'DELETE_USER'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 
 export const ADD_CARD = 'ADD_CARDS'
+export const GET_CARDS = 'GET_CARDS'
 export const DELETE_CARD = 'DELETE_CARD'
 export const SET_CARDS = 'SET_CARDS'
 export const SET_CURRENT_CARD = 'SET_CURRENT_CARD'

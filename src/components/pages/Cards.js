@@ -1,36 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { addCard, setCards, deleteCard, setCurrentCard } from '../../actions/todoActions'
-import useGetFromLocalStorage from '../../hooks/useGetFromLocalStorage'
-import useSetToLocalStorage from '../../hooks/useSetToLocalStorage'
+import { addCard, deleteCard, setCurrentCard, getCards } from '../../actions/todoActions'
 import Card from '../Card'
-import uuidv4 from 'uuid/v4'
 
-const Cards = ({ cards, addCard, setCards, deleteCard, setCurrentCard, currentUser, users }) => {
+const Cards = ({ cards, addCard, getCards, deleteCard, setCurrentCard, currentUser, users }) => {
 	const [text, setText] = useState('')
-	useGetFromLocalStorage('cards', setCards)
-	useSetToLocalStorage('cards', cards)
+
+	useEffect(() => {
+		getCards()
+		// eslint-disable-next-line
+	}, [])
 
 	const onSubmit = e => {
 		e.preventDefault()
 		if (text !== '') {
-			const currentId = uuidv4()
 			const newCard = {
-				id: currentId,
 				name: text,
 				authorId: currentUser.id,
 			}
 			addCard(newCard)
 			setText('')
-			console.log(users)
-
 		}
 	}
 
-
-
-
 	return (
+		cards &&
 		<div>
 			<form onSubmit={onSubmit}>
 				<input type="text" value={text} onChange={e => setText(e.target.value)} />
@@ -51,7 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
 	addCard,
-	setCards,
+	getCards,
 	deleteCard,
 	setCurrentCard
 }

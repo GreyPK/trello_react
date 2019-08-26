@@ -1,18 +1,25 @@
-import { ADD_USER, DELETE_USER, SET_CURRENT_USER, SET_USERS, GET_USERS } from './types'
+import { ADD_USER, DELETE_USER, SET_CURRENT_USER, GET_USERS } from './types'
 
-const apiUrl = 'https://my-json-server.typicode.com/GreyPK/fake-json-server'
+export const addUser = user => async (dispatch) => {
+	const res = await fetch('/users', {
+		method: 'POST',
+		body: JSON.stringify(user),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	const data = await res.json()
 
-export const addUser = user => ({ type: ADD_USER, payload: user })
+	dispatch({ type: ADD_USER, payload: data })
+}
 
 export const getUsers = () => async (dispatch) => {
-	const res = await fetch(`${apiUrl}/users`)
+	const res = await fetch('/users')
 	const data = await res.json()
 	dispatch({
 		type: GET_USERS, payload: data
 	})
 }
-
-export const setUsers = users => ({ type: SET_USERS, payload: users })
 
 export const deleteUser = id => ({ type: DELETE_USER, payload: id })
 

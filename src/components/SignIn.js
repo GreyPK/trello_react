@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { addUser, setUsers, setCurrentUser } from '../actions/userActions'
+import { addUser, setCurrentUser } from '../actions/userActions'
 import useSetToLocalStorage from '../hooks/useSetToLocalStorage'
 
-const SignIn = ({ users, current, setCurrentUser, setUsers }) => {
+const SignIn = ({ users, current, setCurrentUser }) => {
 	const [text, setText] = useState('')
 
 	useSetToLocalStorage('current', current)
@@ -34,7 +34,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
 	addUser,
-	setUsers,
 	setCurrentUser
 }
 
