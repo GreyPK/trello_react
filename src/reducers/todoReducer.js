@@ -1,8 +1,9 @@
-import { ADD_CARD, DELETE_CARD, GET_CARDS, ADD_TODO, GET_TODOS, DELETE_TODO } from '../actions/types'
+import { ADD_CARD, DELETE_CARD, GET_CARDS, ADD_TODO, GET_TODOS, DELETE_TODO, ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT } from '../actions/types'
 
 const initialState = {
 	cards: null,
 	todos: null,
+	comments: null,
 	current: null
 }
 
@@ -42,6 +43,24 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				todos: state.todos.filter(todo => todo.id !== action.payload)
+			}
+
+		case ADD_COMMENT:
+			return {
+				...state,
+				comments: [...state.comments, action.payload]
+			}
+
+		case GET_COMMENTS:
+			return {
+				...state,
+				comments: action.payload
+			}
+
+		case DELETE_COMMENT:
+			return {
+				...state,
+				comments: state.comments.filter(comment => comment.id !== action.payload)
 			}
 
 		default:

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import Todos from './Todos'
 
-const Card = ({ card, todos, author, deleteCard, deleteTodo, addTodo }) => {
+const Card = ({ card, todos, author, deleteCard, deleteTodo, addTodo, comments, addComment, deleteComment, currentUser }) => {
 	const [text, setText] = useState('')
 
 	const onTodoAdd = e => {
@@ -34,7 +34,8 @@ const Card = ({ card, todos, author, deleteCard, deleteTodo, addTodo }) => {
 				</form>
 				<br />
 
-				<Todos todos={todos} deleteTodo={deleteTodo} />
+				<Todos todos={todos} deleteTodo={deleteTodo} currentUser={currentUser}
+					comments={comments} addComment={addComment} deleteComment={deleteComment} />
 			</div>
 		</Fragment>
 	)

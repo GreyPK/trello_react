@@ -1,4 +1,4 @@
-import { ADD_CARD, DELETE_CARD, GET_CARDS, ADD_TODO, GET_TODOS, DELETE_TODO } from './types'
+import { ADD_CARD, DELETE_CARD, GET_CARDS, ADD_TODO, GET_TODOS, DELETE_TODO, ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT } from './types'
 
 export const addCard = card => async (dispatch) => {
 	const res = await fetch('/cards', {
@@ -60,6 +60,38 @@ export const deleteTodo = id => async (dispatch) => {
 
 	dispatch({
 		type: DELETE_TODO,
+		payload: id
+	})
+}
+
+export const addComment = comment => async (dispatch) => {
+	const res = await fetch('/comments', {
+		method: 'POST',
+		body: JSON.stringify(comment),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	const data = await res.json()
+
+	dispatch({ type: ADD_COMMENT, payload: data })
+}
+
+export const getComments = () => async (dispatch) => {
+	const res = await fetch('/comments')
+	const data = await res.json()
+	dispatch({
+		type: GET_COMMENTS, payload: data
+	})
+}
+
+export const deleteComment = id => async (dispatch) => {
+	await fetch(`/comments/${id}`, {
+		method: 'delete'
+	})
+
+	dispatch({
+		type: DELETE_COMMENT,
 		payload: id
 	})
 }
