@@ -4,7 +4,7 @@ import { addUser, setCurrentUser } from '../actions/userActions'
 import useGetFromLocalStorage from '../hooks/useGetFromLocalStorage'
 import useSetToLocalStorage from '../hooks/useSetToLocalStorage'
 
-const SignUp = ({ users, current, addUser, setCurrentUser }) => {
+const SignUp = ({ current, addUser, setCurrentUser }) => {
 	const [text, setText] = useState('')
 
 	useGetFromLocalStorage('current', setCurrentUser)
@@ -15,7 +15,7 @@ const SignUp = ({ users, current, addUser, setCurrentUser }) => {
 		e.preventDefault()
 		if (text !== '') {
 			const newUser = {
-				name: text
+				name: text,
 			}
 			addUser(newUser)
 			setCurrentUser(newUser)
@@ -32,13 +32,15 @@ const SignUp = ({ users, current, addUser, setCurrentUser }) => {
 }
 
 const mapStateToProps = state => ({
-	users: state.user.users,
-	current: state.user.current
+	current: state.user.current,
 })
 
 const mapDispatchToProps = {
 	addUser,
-	setCurrentUser
+	setCurrentUser,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(SignUp)

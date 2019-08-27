@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import Comments from './Comments'
 
-const TodoItem = ({ todo, deleteTodo, comments, addComment, deleteComment, currentUser }) => {
+const TodoItem = ({
+	todo,
+	deleteTodo,
+	comments,
+	addComment,
+	deleteComment,
+	currentUser,
+}) => {
 	const [text, setText] = useState('')
 
 	const onTodoAdd = e => {
@@ -10,7 +17,7 @@ const TodoItem = ({ todo, deleteTodo, comments, addComment, deleteComment, curre
 			const newComment = {
 				title: text,
 				todoId: todo.id,
-				userId: currentUser.id
+				userId: currentUser.id,
 			}
 			addComment(newComment)
 			setText('')
@@ -25,7 +32,8 @@ const TodoItem = ({ todo, deleteTodo, comments, addComment, deleteComment, curre
 		<li>
 			{todo.title}
 
-			<button onClick={() => deleteTodo(todo.id)}>Delete todo</button><br />
+			<button onClick={() => deleteTodo(todo.id)}>Delete todo</button>
+			<br />
 
 			<h4>Comments:</h4>
 			<form onSubmit={onTodoAdd}>
@@ -33,9 +41,12 @@ const TodoItem = ({ todo, deleteTodo, comments, addComment, deleteComment, curre
 				<button>Add new comment</button>
 			</form>
 			<br />
-			<Comments comments={comments.filter(comment => comment.todoId === todo.id)}
+
+			<Comments
+				comments={comments.filter(comment => comment.todoId === todo.id)}
 				addComment={addComment}
-				deleteComment={deleteComment} />
+				deleteComment={deleteComment}
+			/>
 		</li>
 	)
 }

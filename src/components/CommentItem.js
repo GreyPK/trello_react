@@ -5,14 +5,18 @@ const CommentItem = ({ comment, deleteComment, users }) => {
 	return (
 		<li>
 			{comment.title}
-			<br /> Author id: {users.filter(user => user.id === comment.userId)[0].name}
+			<br /> Author id:{' '}
+			{users.filter(user => user.id === comment.userId)[0].name}
 			<button onClick={() => deleteComment(comment.id)}>Delete comment</button>
 		</li>
 	)
 }
 
 const mapStateToProps = state => ({
-	users: state.user.users
+	users: state.user.users,
 })
 
-export default connect(mapStateToProps, null)(CommentItem)
+export default connect(
+	mapStateToProps,
+	null
+)(CommentItem)

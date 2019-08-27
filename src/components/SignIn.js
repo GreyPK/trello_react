@@ -18,23 +18,27 @@ const SignIn = ({ users, current, setCurrentUser }) => {
 		}
 	}
 
-	return (
-		current ? <Redirect to='/' /> :
-			<form onSubmit={onSubmit}>
-				<input type="text" value={text} onChange={e => setText(e.target.value)} />
-				<button>Login user</button>
-			</form>
+	return current ? (
+		<Redirect to="/" />
+	) : (
+		<form onSubmit={onSubmit}>
+			<input type="text" value={text} onChange={e => setText(e.target.value)} />
+			<button>Login user</button>
+		</form>
 	)
 }
 
 const mapStateToProps = state => ({
 	users: state.user.users,
-	current: state.user.current
+	current: state.user.current,
 })
 
 const mapDispatchToProps = {
 	addUser,
-	setCurrentUser
+	setCurrentUser,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(SignIn)

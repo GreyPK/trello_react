@@ -4,8 +4,14 @@ import CommentItem from './CommentItem'
 const Comments = ({ comments, addComment, deleteComment }) => {
 	return (
 		<ul>
-			{comments.map(comment => <CommentItem key={comment.id} comment={comment}
-				addComment={addComment} deleteComment={deleteComment} />)}
+			{comments.map(comment => (
+				<CommentItem
+					key={comment.id}
+					comment={comment}
+					addComment={addComment}
+					deleteComment={deleteComment}
+				/>
+			))}
 		</ul>
 	)
 }

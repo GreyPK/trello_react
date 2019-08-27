@@ -7,9 +7,7 @@ const Logout = ({ setCurrentUser }) => {
 		localStorage.setItem('current', null)
 	}, [setCurrentUser])
 
-	return (
-		<Redirect to='/login' />
-	)
+	return <Redirect to="/login" />
 }
 
 export default Logout

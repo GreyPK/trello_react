@@ -14,5 +14,3 @@ export const DELETE_TODO = 'DELETE_TODO'
 export const ADD_COMMENT = 'GET_COMMENT'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
-
-
