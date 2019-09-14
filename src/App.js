@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { setCurrentUser, getUsers } from './actions/userActions'
 import useGetFromLocalStorage from './hooks/useGetFromLocalStorage'
 
-function App({ current, setCurrentUser, getUsers }) {
+function App({ current, setCurrentUser, getUsers, userError }) {
 	useGetFromLocalStorage('current', setCurrentUser)
 
 	useEffect(() => {
@@ -18,7 +18,9 @@ function App({ current, setCurrentUser, getUsers }) {
 		// eslint-disable-next-line
 	}, [])
 
-	return (
+	return userError ? (
+		<h4>{userError}</h4>
+	) : (
 		<Router>
 			<div className="App">
 				<nav className="nav">
@@ -58,6 +60,7 @@ function App({ current, setCurrentUser, getUsers }) {
 
 const mapStateToProps = state => ({
 	current: state.user.current,
+	userError: state.user.userError,
 })
 
 const mapDispatchToProps = {
