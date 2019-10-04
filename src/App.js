@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import './App.css'
 import Login from './components/pages/Login'
 import Logout from './components/pages/Logout'
 import Cards from './components/pages/Cards'
+import Navigation from './components/Navigation'
 import PrivateRoute from './components/routing/PrivateRoute'
 import { connect } from 'react-redux'
 import { setCurrentUser, getUsers } from './actions/userActions'
@@ -23,25 +23,7 @@ function App({ current, setCurrentUser, getUsers, userError }) {
 	) : (
 		<Router>
 			<div className="App">
-				<nav className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
-							Home
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/login" className="nav-link">
-							Login
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/logout" className="nav-link">
-							Logout
-						</Link>
-					</li>
-					{current && <li className="nav-item">Hello, {current.name}!</li>}
-				</nav>
-
+				<Navigation current={current} />
 				<Switch>
 					<PrivateRoute exact path="/" component={Cards} current={current} />
 					<Route exact path="/login" component={Login} />
