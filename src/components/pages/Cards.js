@@ -12,9 +12,13 @@ import {
 	deleteComment,
 } from '../../actions/todoActions'
 import Card from '../Card'
+import { Card as AntdCard } from 'antd'
+import { Form, Input, Button } from 'antd'
+import { Pagination } from 'antd'
 
 const Cards = ({
 	cards,
+	cardsTotalCount,
 	todos,
 	comments,
 	addCard,
@@ -32,11 +36,15 @@ const Cards = ({
 	const [text, setText] = useState('')
 
 	useEffect(() => {
-		getCards()
+		getCards(1)
 		getTodos()
 		getComments()
 		// eslint-disable-next-line
 	}, [])
+
+	const onPageChange = page => {
+		getCards(page)
+	}
 
 	const onSubmit = e => {
 		e.preventDefault()
@@ -55,14 +63,21 @@ const Cards = ({
 		cards &&
 		todos && (
 			<div>
-				<form onSubmit={onSubmit}>
-					<input
-						type="text"
-						value={text}
-						onChange={e => setText(e.target.value)}
-					/>
-					<button>Add new Card</button>
-				</form>
+				<AntdCard title="Add new card" style={{ width: 400 }}>
+					<Form layout="inline" onSubmit={onSubmit}>
+						<Form.Item>
+							<Input
+								type="text"
+								value={text}
+								onChange={e => setText(e.target.value)}
+								placeholder="Card name"
+							/>
+						</Form.Item>
+						<Form.Item>
+							<Button type="primary">Add</Button>
+						</Form.Item>
+					</Form>
+				</AntdCard>
 
 				<div style={{ display: 'flex', flexWrap: 'wrap' }}>
 					{cards.map(card => (
@@ -81,6 +96,12 @@ const Cards = ({
 						/>
 					))}
 				</div>
+				<Pagination
+					defaultCurrent={1}
+					onChange={onPageChange}
+					total={cardsTotalCount}
+					pageSize={2}
+				/>
 			</div>
 		)
 	)
@@ -88,6 +109,7 @@ const Cards = ({
 
 const mapStateToProps = state => ({
 	cards: state.todo.cards,
+	cardsTotalCount: state.todo.cardsTotalCount,
 	todos: state.todo.todos,
 	users: state.user.users,
 	comments: state.todo.comments,

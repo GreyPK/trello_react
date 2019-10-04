@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Comments from './Comments'
+import { Form, Input, Button, Icon, List } from 'antd'
 
 const TodoItem = ({
 	todo,
@@ -29,25 +30,37 @@ const TodoItem = ({
 	}
 
 	return (
-		<li>
-			{todo.title}
+		<List.Item>
+			<div>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+					}}
+				>
+					<h2>{todo.title}</h2>
+					<Icon type="delete" onClick={() => deleteTodo(todo.id)} />
+				</div>
+				<p>{todo.description}</p>
 
-			<button onClick={() => deleteTodo(todo.id)}>Delete todo</button>
-			<br />
-
-			<h4>Comments:</h4>
-			<form onSubmit={onTodoAdd}>
-				<input type="text" value={text} onChange={onChange} />
-				<button>Add new comment</button>
-			</form>
-			<br />
-
-			<Comments
-				comments={comments.filter(comment => comment.todoId === todo.id)}
-				addComment={addComment}
-				deleteComment={deleteComment}
-			/>
-		</li>
+				<h4>Comments:</h4>
+				<Form layout="inline" onSubmit={onTodoAdd}>
+					<Form.Item>
+						<Input type="text" value={text} onChange={onChange} />
+					</Form.Item>
+					<Form.Item>
+						<Button>Add comment</Button>
+					</Form.Item>
+				</Form>
+				<br />
+				<Comments
+					comments={comments.filter(comment => comment.todoId === todo.id)}
+					addComment={addComment}
+					deleteComment={deleteComment}
+				/>
+			</div>
+		</List.Item>
 	)
 }
 

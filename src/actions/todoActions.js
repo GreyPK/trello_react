@@ -2,6 +2,7 @@ import {
 	ADD_CARD,
 	DELETE_CARD,
 	GET_CARDS,
+	SET_CARD_TOTAL_COUNT,
 	ADD_TODO,
 	GET_TODOS,
 	DELETE_TODO,
@@ -23,8 +24,14 @@ export const addCard = card => async dispatch => {
 	dispatch({ type: ADD_CARD, payload: data })
 }
 
-export const getCards = () => async dispatch => {
-	const res = await fetch('/cards')
+export const getCards = page => async dispatch => {
+	const res = await fetch(`/cards?_page=${page}&_limit=2`)
+
+	dispatch({
+		type: SET_CARD_TOTAL_COUNT,
+		payload: parseInt(res.headers.get('X-Total-Count')),
+	})
+
 	const data = await res.json()
 	dispatch({
 		type: GET_CARDS,

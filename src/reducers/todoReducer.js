@@ -2,6 +2,7 @@ import {
 	ADD_CARD,
 	DELETE_CARD,
 	GET_CARDS,
+	SET_CARD_TOTAL_COUNT,
 	ADD_TODO,
 	GET_TODOS,
 	DELETE_TODO,
@@ -12,6 +13,7 @@ import {
 
 const initialState = {
 	cards: null,
+	cardsTotalCount: 0,
 	todos: null,
 	comments: null,
 	current: null,
@@ -35,6 +37,12 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				cards: state.cards.filter(card => card.id !== action.payload),
+			}
+
+		case SET_CARD_TOTAL_COUNT:
+			return {
+				...state,
+				cardsTotalCount: action.payload,
 			}
 
 		case ADD_TODO:

@@ -1,5 +1,6 @@
 import React from 'react'
 import TodoItem from './TodoItem'
+import { List } from 'antd'
 
 const Todos = ({
 	todos,
@@ -11,7 +12,7 @@ const Todos = ({
 }) => {
 	return (
 		comments && (
-			<ul>
+			<List>
 				{todos.map(todo => (
 					<TodoItem
 						todo={todo}
@@ -23,7 +24,7 @@ const Todos = ({
 						currentUser={currentUser}
 					/>
 				))}
-			</ul>
+			</List>
 		)
 	)
 }

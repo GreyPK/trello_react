@@ -23,7 +23,7 @@ function App({ current, setCurrentUser, getUsers, userError }) {
 	) : (
 		<Router>
 			<div className="App">
-				<Navigation current={current} />
+				<Navigation currentUser={current} />
 				<Switch>
 					<PrivateRoute exact path="/" component={Cards} current={current} />
 					<Route exact path="/login" component={Login} />
